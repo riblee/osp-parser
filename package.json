@@ -1,0 +1,10 @@
+{
+  "name": "osp-parser",
+  "version": "0.0.1",
+  "description": "A simple packet parser for Optin Kft's OSP (http://www.optin.hu/products/optin-sensor-protocol).",
+  "main": "index.js",
+  "author": "János Dániel Reibl <jani.reibl3@gmail.com>",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}

@@ -9,6 +9,7 @@ var defaultConfig = {
     port: 8080,
     host: '0.0.0.0'
 };
+var plugins = [];
 
 /**
  *
@@ -26,16 +27,37 @@ var Osp =  function (options) {
         self.emit('tcpConnect', socket);
 
         socket.on('data', function(data) {
-            self.emit('message', parse(data));
+            var parsedData = parse(data);
+
+            if (plugins[parsedData.type]) {
+                parsedData = plugins[parsedData.type](parsedData);
+            }
+
+            self.emit('message', parsedData);
         });
 
         socket.on('close', function() {
-            self.emit('end');
+            self.emit('tcpDisConnect');
         });
 
     }).listen(opt.port, opt.host);
 };
 
 Osp.prototype = Object.create(Events.EventEmitter.prototype);
+
+/**
+ * Set a handler function to specified data type and returns it
+ * If handler is not specified returns with registered one
+ * @param {number} dataType The data type that the handler can parse
+ * @param {function} [handler] The handler function to data type
+ * @returns {*} The processed object
+ */
+Osp.prototype.plugin = function (dataType, handler) {
+    if (handler) {
+        plugins[dataType] = handler;
+    }
+
+    return plugins[dataType];
+};
 
 module.exports = Osp;

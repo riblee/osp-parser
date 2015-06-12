@@ -1,6 +1,6 @@
 {
   "name": "osp-parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A simple packet parser for Optin Kft's OSP (http://www.optin.hu/products/optin-sensor-protocol).",
   "repository": "https://github.com/riblee/osp-parser",
   "main": "index.js",

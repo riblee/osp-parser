@@ -5,9 +5,7 @@ var osp = new Osp();
 osp.plugin(8, function (packet) {
     console.log('Handler called for type 8 packet with data: ' + JSON.stringify(packet.data));
 
-    packet.data.sort(function (a, b) {
-        return b-a;
-    });
+    // Modify packet and/or data here
 
     return packet;
 });
@@ -18,8 +16,8 @@ osp.plugin(2, function (packet) {
     if (packet.data.length < 2) {
         console.log('Error');
     }
-    console.log('The device sent a response to COMMAND packet. CommandID: ' + packet.data[0] +
-        ' Exit code: ' + packet.data[1]);
+    console.log('The device sent a response to COMMAND packet. CommandID: ' + packet.data.readUInt8(0) +
+        ' Exit code: ' + packet.data.readUInt8(1));
 
     return packet;
 });

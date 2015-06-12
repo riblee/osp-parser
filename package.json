@@ -5,6 +5,11 @@
   "repository": "https://github.com/riblee/osp-parser",
   "main": "index.js",
   "author": "János Dániel Reibl <jani.reibl3@gmail.com>",
+  "bugs": {
+    "url" : "https://github.com/riblee/osp-parser/issues",
+    "email" : "jani.reibl3@gmail.com"
+  },
+  "homepage": "http://riblee.github.io/osp-parser",
   "dependencies": {
     "underscore": "^1.8.3"
   }

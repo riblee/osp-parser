@@ -30,10 +30,10 @@ var Osp =  function (options) {
             var parsedData = parse(data);
 
             if (plugins[parsedData.type]) {
-                parsedData = plugins[parsedData.type](parsedData);
+                parsedData = plugins[parsedData.type](parsedData, socket);
             }
 
-            self.emit('message', parsedData);
+            self.emit('message', parsedData, socket);
         });
 
         socket.on('close', function() {

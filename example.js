@@ -15,7 +15,9 @@ osp.plugin(2, function (packet, socket) {
     console.log('Handler called for type 2 packet with data: ' + JSON.stringify(packet.data));
     if (packet.data.length < 2) {
         console.log('Error');
+        return packet;
     }
+
     console.log('The device sent a response to COMMAND packet. CommandID: ' + packet.data.readUInt8(0) +
         ' Exit code: ' + packet.data.readUInt8(1));
 
@@ -28,6 +30,7 @@ osp.on('tcpConnect', function (socket) {
 
 osp.on('message', function (packet, socket) {
     console.log('Received packet with type ' + packet.type + ' from ' + socket.remoteAddress);
+    console.log(JSON.stringify(packet, null, 4));
 });
 
 osp.on('tcpDisConnect', function () {
